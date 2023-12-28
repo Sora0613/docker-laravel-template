@@ -20,6 +20,9 @@ RUN apt-get update \
 
 RUN docker-php-ext-install pdo_mysql
 
+# Xdebugのインストール
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+
 # composerのインストール
 RUN cd /usr/bin && curl -s http://getcomposer.org/installer | php && ln -s /usr/bin/composer.phar /usr/bin/composer
 
