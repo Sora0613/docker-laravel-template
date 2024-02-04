@@ -17,6 +17,21 @@ services:
     volumes:
       - "./src:/var/www/html"
 
+  ngrok:
+    platform: linux/amd64
+    image: wernight/ngrok:latest
+    ports:
+      - 4040:4040
+    environment:
+      NGROK_PROTOCOL: https
+      NGROK_PORT: web:80
+      NGROK_AUTH: ${NGROK_ATUH}
+    depends_on:
+      - web
+    networks:
+      - default
+
+  
   # PHPサーバー
   php:
     # コンテナ名
